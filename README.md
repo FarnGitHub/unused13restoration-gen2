@@ -10,6 +10,7 @@ Due to relaxed ProGuard settings, Minecraft 1.3 contains some unused code. This 
 - Infinite liquid source blocks
 - Level save conflict screen
 - Model texture generator
+- Panorama screenshotter
 - Potion tester
 - Rainforests
 - Spawnable "Delay" entity
