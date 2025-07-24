@@ -1,0 +1,29 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.bluestaggo.unused13restoration.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "BiomeMixin",
+    "BlockMixin",
+    "CommandManagerMixin",
+    "EntitiesAccessor",
+    "FlatChunkGeneratorMixin",
+    "ItemMixin",
+    "LanguageManagerMixin",
+    "OverworldChunkGeneratorMixin"
+  ],
+  "client": [
+    "C_7422760Mixin",
+    "GameMenuScreenMixin",
+    "LivingEntityRendererAccessor",
+    "MinecraftAccessor",
+    "MinecraftMixin",
+    "OptionsScreenMixin"
+  ],
+  "server": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}

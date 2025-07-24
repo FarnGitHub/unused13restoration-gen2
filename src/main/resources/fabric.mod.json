@@ -1,0 +1,25 @@
+{
+	"schemaVersion": 1,
+	"id": "unused13restoration",
+	"version": "${version}",
+	"name": "Unused 1.3 Restoration",
+	"description": "Restore unused features hidden in the code of 1.3",
+	"authors": [
+		"BlueStaggo"
+	],
+	"contact": {
+		"homepage": "https://github.com/BlueStaggo/unused13restoration",
+		"sources": "https://github.com/BlueStaggo/unused13restoration"
+	},
+	"license": "MIT",
+	"icon": "assets/unused13restoration/icon.png",
+	"environment": "client",
+	"entrypoints": {},
+	"mixins": [
+		"unused13restoration.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.21",
+		"minecraft": "1.3"
+	}
+}
