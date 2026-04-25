@@ -1,17 +1,17 @@
 package io.bluestaggo.unused13restoration;
 
-import com.mojang.blaze3d.vertex.BufferBuilder;
 import io.bluestaggo.unused13restoration.mixin.EntitiesAccessor;
-import io.bluestaggo.unused13restoration.mixin.LivingEntityRendererAccessor;
+import io.bluestaggo.unused13restoration.mixin.MobRendererAccessor;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.EntityRenderer;
-import net.minecraft.client.render.entity.LivingEntityRenderer;
+import net.minecraft.client.render.entity.MobRenderer;
 import net.minecraft.client.render.model.Model;
+import net.minecraft.client.render.vertex.Tesselator;
 import net.minecraft.entity.Entity;
-import net.minecraft.unmapped.C_7430114;
+import net.minecraft.unmapped.UvGenerator;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
@@ -44,7 +44,7 @@ public class ModelTextureGeneratorScreen extends Screen {
 
 	private void update() {
 		if (this.texture > 0) {
-			this.minecraft.textureManager.remove(this.texture);
+			this.minecraft.textureManager.release(this.texture);
 			this.texture = 0;
 		}
 
@@ -55,12 +55,12 @@ public class ModelTextureGeneratorScreen extends Screen {
 		}
 
 		EntityRenderer entityRenderer = EntityRenderDispatcher.INSTANCE.getRenderer(entityClass);
-		if (!(entityRenderer instanceof LivingEntityRenderer)) {
+		if (!(entityRenderer instanceof MobRenderer)) {
 			return;
 		}
 
-		Model model = ((LivingEntityRendererAccessor)entityRenderer).getModel();
-		new C_7430114().m_8176741(model.parts);
+		Model model = ((MobRendererAccessor)entityRenderer).getModel();
+		new UvGenerator().generateImage(model.parts);
 
 		BufferedImage image;
 		try {
@@ -73,7 +73,7 @@ public class ModelTextureGeneratorScreen extends Screen {
 		this.textureWidth = image.getWidth();
 		this.textureHeight = image.getHeight();
 
-		this.texture = this.minecraft.textureManager.bind(image);
+		this.texture = this.minecraft.textureManager.load(image);
 	}
 
 	@Override
@@ -86,11 +86,11 @@ public class ModelTextureGeneratorScreen extends Screen {
 		double maxX = (this.width + this.textureWidth / 2.0) / 2.0;
 		double minY = (this.height - this.textureHeight / 2.0) / 2.0;
 		double maxY = (this.height + this.textureHeight / 2.0) / 2.0;
-		BufferBuilder bb = BufferBuilder.INSTANCE;
+		Tesselator bb = Tesselator.INSTANCE;
 
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
 		GL11.glColor4f(0.0f, 0.0f, 0.0f, 1.0f);
-		bb.start();
+		bb.begin();
 		bb.vertex(minX, maxY, 0.0, 0.0, 1.0);
 		bb.vertex(maxX, maxY, 0.0, 1.0, 1.0);
 		bb.vertex(maxX, minY, 0.0, 1.0, 0.0);
@@ -100,7 +100,7 @@ public class ModelTextureGeneratorScreen extends Screen {
 		if (this.texture != 0) {
 			GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.texture);
 			GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-			bb.start();
+			bb.begin();
 			bb.vertex(minX, maxY, 0.0, 0.0, 1.0);
 			bb.vertex(maxX, maxY, 0.0, 1.0, 1.0);
 			bb.vertex(maxX, minY, 0.0, 1.0, 0.0);
@@ -118,7 +118,7 @@ public class ModelTextureGeneratorScreen extends Screen {
 	@Override
 	public void removed() {
 		Keyboard.enableRepeatEvents(false);
-		this.minecraft.textureManager.remove(this.texture);
+		this.minecraft.textureManager.release(this.texture);
 	}
 
 	@Override

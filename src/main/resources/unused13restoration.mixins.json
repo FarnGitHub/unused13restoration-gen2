@@ -10,13 +10,13 @@
     "EntitiesAccessor",
     "FlatChunkGeneratorMixin",
     "ItemMixin",
-    "LanguageManagerMixin",
+    "LanguageMixin",
     "OverworldChunkGeneratorMixin"
   ],
   "client": [
-    "C_7422760Mixin",
+    "GeneratorProfilerMixin",
     "GameMenuScreenMixin",
-    "LivingEntityRendererAccessor",
+    "MobRendererAccessor",
     "MinecraftAccessor",
     "MinecraftMixin",
     "OptionsScreenMixin"

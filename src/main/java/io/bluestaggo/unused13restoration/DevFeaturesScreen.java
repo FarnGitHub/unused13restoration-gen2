@@ -1,6 +1,9 @@
 package io.bluestaggo.unused13restoration;
 
+import net.minecraft.client.BiomeMap;
+import net.minecraft.client.gui.GuiParticle;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screen.WorldSaveConflictScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.unmapped.*;
 import org.lwjgl.input.Mouse;
@@ -42,7 +45,7 @@ public class DevFeaturesScreen extends Screen {
 	@Override
 	public void tick() {
 		if (Mouse.isButtonDown(0)) {
-			this.f_8347669.m_3370983(new C_3491602(
+			this.particlesGui.m_46367632(new GuiParticle(
 				this.mouseX,
 				this.mouseY,
 				Math.random() * 5.0 - 2.5 - (this.prevMouseX - this.mouseX),
@@ -62,15 +65,15 @@ public class DevFeaturesScreen extends Screen {
 		this.drawCenteredString(this.textRenderer, "Dev Features", this.width / 2, 20, 0xFFFFFF);
 		super.render(mouseX, mouseY, tickDelta);
 
-		if (this.f_8347669 != null) {
-			this.f_8347669.m_1115122(tickDelta);
+		if (this.particlesGui != null) {
+			this.particlesGui.render(tickDelta);
 		}
 	}
 
 	enum Entry {
 		BIOME_PREVIEWER("Biome Previewer", screen -> threaded(
 			() -> {
-				C_3169474 biomePreviewer = new C_3169474(1200, 800, 1);
+				BiomeMap biomePreviewer = new BiomeMap(1200, 800, 1);
 				JFrame jFrame = new JFrame("Map test");
 				jFrame.add(biomePreviewer);
 				jFrame.pack();
@@ -79,11 +82,11 @@ public class DevFeaturesScreen extends Screen {
 				jFrame.setVisible(true);
 			})),
 		LEVEL_SAVE_CONFLICT_SCREEN("Leftover Level Save Conflict Screen",
-			screen -> screen.minecraft.openScreen(new C_0848960())),
+			screen -> screen.minecraft.openScreen(new WorldSaveConflictScreen())),
 		MODEL_TEXTURE_GENERATOR("Model Texture Generator",
 			screen -> screen.minecraft.openScreen(new ModelTextureGeneratorScreen(screen))),
 		POTION_TESTER("b1.9-pre2 Potion Tester", screen -> threaded(
-			() -> new C_0733069().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE))),
+			() -> new PotionTester().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE))),
 		WORLD_GENERATION_PROFILER("World generation Profiler",
 			screen -> screen.minecraft.openScreen(new WorldGenProfilerScreen(screen))),
 		;

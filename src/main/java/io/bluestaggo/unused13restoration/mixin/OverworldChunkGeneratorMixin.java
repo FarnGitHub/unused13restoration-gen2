@@ -1,13 +1,13 @@
 package io.bluestaggo.unused13restoration.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.unmapped.C_0041715;
-import net.minecraft.unmapped.C_4926342;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkSource;
 import net.minecraft.world.gen.Generator;
+import net.minecraft.world.gen.carver.OldCaveWorldCarver;
 import net.minecraft.world.gen.chunk.OverworldChunkGenerator;
+import net.minecraft.world.gen.feature.HouseFeature;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -32,7 +32,7 @@ public class OverworldChunkGeneratorMixin {
 		at = @At("TAIL")
 	)
 	private void useLegacyCaves(World world, long seed, boolean structures, CallbackInfo ci) {
-		this.cave = new C_4926342();
+		this.cave = new OldCaveWorldCarver();
 	}
 
 	@Inject(
@@ -54,6 +54,6 @@ public class OverworldChunkGeneratorMixin {
 
 		int x = chunkX * 16 + 8 + random.nextInt(16);
 		int z = chunkZ * 16 + 8 + random.nextInt(16);
-		new C_0041715().place(this.world, this.random, x, 255, z);
+		new HouseFeature().place(this.world, this.random, x, 255, z);
 	}
 }

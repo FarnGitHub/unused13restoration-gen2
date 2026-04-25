@@ -1,6 +1,6 @@
 package io.bluestaggo.unused13restoration.mixin;
 
-import io.bluestaggo.unused13restoration.DelayEntitySpawnerWandItem;
+import io.bluestaggo.unused13restoration.SpawnerEntityWandItem;
 import io.bluestaggo.unused13restoration.Unused13Restoration;
 import net.minecraft.item.CreativeModeTab;
 import net.minecraft.item.Item;
@@ -19,7 +19,7 @@ public class ItemMixin {
 		)
 	)
 	private static void registerCustomItems(CallbackInfo ci) {
-		Unused13Restoration.delayEntitySpawnerWand = new DelayEntitySpawnerWandItem(133)
+		Unused13Restoration.delayEntitySpawnerWand = new SpawnerEntityWandItem(133)
 			.setSprite(12, 6)
 			.setKey("delayEntitySpawnerWand")
 			.setCreativeModeTab(CreativeModeTab.TOOLS);

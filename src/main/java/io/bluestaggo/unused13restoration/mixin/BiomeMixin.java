@@ -1,7 +1,7 @@
 package io.bluestaggo.unused13restoration.mixin;
 
-import net.minecraft.unmapped.C_7106100;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.RainforestBiome;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -14,7 +14,7 @@ public class BiomeMixin {
 		at = @At("TAIL")
 	)
 	private static void registerCustomBiomes(CallbackInfo ci) {
-		Biome rainforest = new C_7106100(21);
+		Biome rainforest = new RainforestBiome(21);
 		rainforest.baseColor = 5470985;
 		rainforest.name = "Rainforest";
 		rainforest.mutatedColor = 5470985;
@@ -23,7 +23,7 @@ public class BiomeMixin {
 		rainforest.baseHeight = 0.2f;
 		rainforest.heightVariation = 0.4f;
 
-		Biome rainforestHills = new C_7106100(22);
+		Biome rainforestHills = new RainforestBiome(22);
 		rainforestHills.baseColor = 2900485;
 		rainforestHills.name = "RainforestHills";
 		rainforestHills.mutatedColor = 5470985;

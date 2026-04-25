@@ -3,8 +3,9 @@ package io.bluestaggo.unused13restoration.mixin;
 import io.bluestaggo.unused13restoration.InfiniteLiquidSourceBlock;
 import io.bluestaggo.unused13restoration.Unused13Restoration;
 import net.minecraft.block.Block;
+import net.minecraft.block.CoralBlock;
+import net.minecraft.block.LegacyLiquidSourceBlock;
 import net.minecraft.item.CreativeModeTab;
-import net.minecraft.unmapped.C_7674817;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -21,19 +22,19 @@ public abstract class BlockMixin {
 		)
 	)
 	private static void registerCustomBlocks(CallbackInfo ci) {
-		Block coral = Unused13Restoration.coral = new C_7674817(137, 26);
+		Block coral = Unused13Restoration.coral = new CoralBlock(137, 26);
 		coral.setKey("coral");
-		coral.sound = Block.STONE_SOUND;
+		coral.sounds = Block.STONE_SOUNDS;
 		coral.setCreativeModeTab(CreativeModeTab.DECORATIONS);
 
 		Block infiniteWaterSource = Unused13Restoration.infiniteWaterSource = new InfiniteLiquidSourceBlock(138, Block.WATER.id);
 		infiniteWaterSource.setKey("infiniteWaterSource");
-		infiniteWaterSource.sound = Block.STONE_SOUND;
+		infiniteWaterSource.sounds = Block.STONE_SOUNDS;
 		infiniteWaterSource.setCreativeModeTab(CreativeModeTab.DECORATIONS);
 
 		Block infiniteLavaSource = Unused13Restoration.infiniteLavaSource = new InfiniteLiquidSourceBlock(139, Block.LAVA.id);
 		infiniteLavaSource.setKey("infiniteLavaSource");
-		infiniteLavaSource.sound = Block.STONE_SOUND;
+		infiniteLavaSource.sounds = Block.STONE_SOUNDS;
 		infiniteLavaSource.setCreativeModeTab(CreativeModeTab.DECORATIONS);
 	}
 }

@@ -8,5 +8,5 @@ import java.io.File;
 
 @Mixin(Minecraft.class)
 public interface MinecraftAccessor {
-	@Invoker("m_2009917") String invokeTakePanorama(File file, int width, int height);
+	@Invoker("takePanorama") String invokeTakePanorama(File file, int width, int height);
 }

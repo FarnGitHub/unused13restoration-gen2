@@ -1,9 +1,9 @@
 package io.bluestaggo.unused13restoration.mixin;
 
+import net.minecraft.server.command.BookTestCommand;
 import net.minecraft.server.command.Command;
 import net.minecraft.server.command.handler.CommandManager;
 import net.minecraft.server.command.handler.CommandRegistry;
-import net.minecraft.unmapped.C_3506615;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,7 +17,7 @@ public class CommandManagerMixin extends CommandRegistry {
 		at = @At("CTOR_HEAD")
 	)
 	public void registerUnusedCommands(CallbackInfo ci) {
-		this.register(new C_3506615() {
+		this.register(new BookTestCommand() {
 			public int compareTo(@NotNull Object object) {
 				if (object instanceof Command) {
 					return this.getName().compareTo(((Command)object).getName());

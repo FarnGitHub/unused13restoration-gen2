@@ -18,7 +18,7 @@ public class MinecraftMixin {
 		at = @At("TAIL")
 	)
 	private void registerCustomSprites(CallbackInfo ci) {
-		this.textureManager.addSprite(new FileSprite(26, 0,
+		this.textureManager.addDynamicTexture(new FileSprite(26, 0,
 			this.textureManager.getColors("/assets/unused13restoration/textures/block/coral.png")));
 	}
 }

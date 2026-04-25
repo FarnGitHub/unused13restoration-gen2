@@ -1,16 +1,16 @@
 package io.bluestaggo.unused13restoration;
 
-import net.minecraft.client.render.texture.TextureAtlas;
+import net.minecraft.client.render.texture.DynamicTexture;
 
 import java.nio.ByteBuffer;
 
-public class FileSprite extends TextureAtlas {
+public class FileSprite extends DynamicTexture {
 	public FileSprite(int sprite, int type, int[] colors) {
 		super(sprite);
-		this.type = type;
+		this.atlas = type;
 
 		ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
 		byteBuffer.asIntBuffer().put(colors);
-		this.buffer = byteBuffer.array();
+		this.pixels = byteBuffer.array();
 	}
 }

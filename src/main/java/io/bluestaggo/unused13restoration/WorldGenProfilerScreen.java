@@ -2,7 +2,7 @@ package io.bluestaggo.unused13restoration;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.unmapped.C_7422760;
+import net.minecraft.unmapped.GeneratorProfiler;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -19,7 +19,7 @@ public class WorldGenProfilerScreen extends Screen {
 		this.printStream = new PrintStream(this.outputStream);
 		System.setOut(this.printStream);
 		System.setErr(this.printStream);
-		this.profilerThread = new Thread(() -> new C_7422760().m_9131811());
+		this.profilerThread = new Thread(() -> new GeneratorProfiler().run());
 		this.profilerThread.setDaemon(true);
 		this.profilerThread.start();
 	}
@@ -55,7 +55,7 @@ public class WorldGenProfilerScreen extends Screen {
 	public void removed() {
 		System.setOut(null);
 		System.setErr(null);
-		this.profilerThread.stop();
+		this.profilerThread.interrupt();
 		this.printStream.close();
 	}
 }

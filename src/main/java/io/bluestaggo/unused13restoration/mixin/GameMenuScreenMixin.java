@@ -29,7 +29,7 @@ public abstract class GameMenuScreenMixin extends Screen {
 	)
 	protected void panoramaButtonClicked(ButtonWidget button, CallbackInfo ci) {
 		if (button == this.u13r$panoramaButton) {
-			this.u13r$panoramaStatus = ((MinecraftAccessor)this.minecraft).invokeTakePanorama(this.minecraft.runDir, 256, 256);
+			this.u13r$panoramaStatus = ((MinecraftAccessor)this.minecraft).invokeTakePanorama(this.minecraft.gameDir, 256, 256);
 			ci.cancel();
 		}
 	}
